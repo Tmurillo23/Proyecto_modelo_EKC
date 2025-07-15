@@ -1,0 +1,177 @@
+%https://www.overleaf.com/5137837282kftxhwhjxdss
+\documentclass[11 pt]{article}
+
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{subfig}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=blue,      
+    urlcolor=black,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\title{Análisis de la calidad medioambiental de Alemania, Australia, China, Colombia, India y Sudáfrica con su desarrollo económico }
+\author{Tatiana Murillo Mosquera}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introducción}
+Desde la aparición de la máquina de vapor hasta la actualidad, el mundo sufrió un cambio de paradigma económico el cual seguimos viviendo hasta hoy. Los trabajos automatizados propiciaron la aparición de grandes fábricas que podían hacer productos en serie de manera rápida y barata. El desarrollo económico que se vivió dada esta transición de una economía lenta y pequeña a una rápida y masiva, trajo como unas de sus consecuencias el deterioro de la calidad ambiental del país que viviera ese cambio; siendo mayoritariamente evidente en el cambio de calidad del aire producto de las emisiones de gases de efecto invernadero.
+
+Por tal razón, muchas veces se considera que país desarrollado y baja calidad ambiental son sinónimos. Aunque actualmente, muchos de los países que vivieron esa transición económica a inicios del siglo pasado, han optado por economías de producción más lenta a cambio de mejorar la calidad medioambiental; un ejemplo de esto es Alemania, que con un PIB per cápita de 53.930 dólares (en 2019) y 8.52 toneladas en emisiones de $Co_2$ (en 2019) comparados con un PIB per cápita de 36.699 dólares (en 1990) y 13.31 toneladas de $Co_2$ (en 1990). ~\cite{owid}
+
+
+\section{Marco Teórico}
+
+El modelo EKC plantea que a medida que un país se abre paso hacia el desarrollo económico (entendido aquí como el aumento del PIB per cápita del país) su calidad medioambiental se deteriora; pero, a medida que el desarrollo económico aumenta llega un momento donde este deterioro se encuentra en su punto máximo y ahí comienza a descender ~\cite{STERN2018}. Dando a la relación entre el desarrollo económico nacional y la calidad medio ambiental tiene en general una forma de U invertida, que luciría de esta manera:
+
+\begin{figure}[!htb]
+ \centering
+  \includegraphics[width=0.3\textwidth]{gráficos/Ekc ejemplo.png}
+ \caption{Ejemplo de EKC para emisiones de Sulfuro. Fuentes ~\cite{STERN2018} }
+ \end{figure}
+
+Estas características, se atribuyen de tal manera ya que la definición de desarrollo económico dada por Justin Yifu establece el desarrollo económico como el proceso de transformación estructurada con continua innovación tecnológica y mejoras industriales,que incrementa la productividad laboral y acompaña el mejoramiento en infraestructura
+e instituciones.~\cite{LIN2017183}
+Por tanto, se infiere que un país con un alto desarrollo económico, va a tener todas las herramientas a la mano para poder mejorar la calidad ambiental de su nación teniendo a su vez mayor preocupación por esta, ya que tal y como lo dice la European Enviroment Agency en su glosario, la calidad ambiental se refiere a “Properties and characteristics of the environment, either generalized or local, as they impinge on human beings and other
+organisms. … and the potential effects which such characteristics may have on physical and mental health (caused by human activities).” [Propiedades y características del ambiente,general o localmente, que inciden en los seres humanos y otros organismos… y los efectos potenciales que tales caracterisitcas pueden tener en la salud física y mental (causada por actividades humanas)]\cite{eaa}
+Entonces, para conseguir la relación desarrollo económico-calidad ambiental con EKC se usa el siguiente modelo ~\cite{sanchez_calidad_2003}:
+
+\begin{equation}\label{eq:ekc}
+lnE_{it} = \alpha_i + \beta_1Y_{it} + \beta_2(Y_{it})^2
+\end{equation}
+Donde $E$ es la calidad medioambiental o las emisiones por personas, $Y$ es el PIB per cápita, $\alpha$, $\beta_1$ y  $\beta_2$ son coeficientes, $i$ es la cantidad de países que se van a evaluar y $t$ s el tiempo en años. Es importante notar que estos datos varían según el país o la región a estudiar y que además este modelo es tomando en cuenta que los valores de $Y$ tienen aplicado logaritmo natural.
+
+Estos coeficientes $\alpha$, $\beta_1$ y  $\beta_2$ se calculan por medio de una regresión de Mínimos Cuadrados
+Ordinarios (MCO), $\alpha$ donde es la ordenada al origen, o sea el valor que se espera tener
+cuando los demás predictores son cero. $\beta_1$ y  $\beta_2$ son coeficiente de regresión parcial los cuales representan en este caso la tasa de crecimiento de las emisiones por persona según el PIB per cápita del país ($Y_{it}$). Y $\beta_2$ representa la tasa de crecimiento de las emisiones por persona según la el avance tecnológico del país (en este caso particular se va a evaluar esto con que tanto porcentaje de generación de energía renovable usa ese país).
+
+La ecuación que determina los coeficientes $\alpha$, $\beta_1$ y  $\beta_2$ está dada por:
+\begin{equation}\label{eq:mco}
+\beta_{i} = (X^tX)^{-1} X^tY
+\end{equation}
+
+Donde $X$ s una matriz que contiene todos los datos, en este caso los datos son el PIB per
+cápita del país y $Y$ es un matriz de orden $\beta_1$ que contiene los datos de las variables a
+explicar, o sea las que acompañan a $\beta_1$ y  $\beta_2$.
+
+Hay que aclarar que en los países desarrollados, el signo de la variable $\beta_2$.es por lo general es negativo, esto es para que pueda formarse la forma de U invertida; este supuesto se hace basándonos en que estos países se encuentran en la tercera parte del EKC; mientras a los llamados países en vías de desarrollo respecta, estos aún no han alcanzado esta tercera parte, ya que no han llegado a ese valor máximo de deterioro medioambiental o el ‘punto de retorno’ de los niveles de ingresos (PIB per cápita). Este punto de retorno, donde las emisiones se encuentran en su máximo, se puede encontrar aplicando la siguiente fórmula:
+
+\begin{equation}
+\tau = \exp{\frac{-\beta_1}{2\beta_2}}
+\end{equation}
+
+En el caso específico de este proyecto, los países escogidos para comparar su calidad ambiental con su desarrollo económico, son: Alemania, Australia, China, Colombia, India y Sudáfrica. A cada uno de estos países se les va a realizar su propio EKC teniendo en cuenta lo dicho anteriormente respecto a los coeficientes  $\alpha$, $\beta_1$ y  $\beta_2$ . Por otra parte, los países van a ser clasificados en tres grupos. Esta clasificación se basará en la que realiza el Banco Mundial para las economías de los países según sus ingresos por habitantes
+
+El primer grupo estará conformado por aquellos países categorizados como economías de altos ingresos. O sea, los que superan el umbral de 13.205 dólares o más de PIB per cápita, los países pertenecientes a este grupo son: Alemania y  Australia. El segundo grupo estará conformado por los países que sea catalogados como economías de ingresos medio-alto. Estos son los países que tienen un PIB per cápita entre 4.256 hasta 13.205 dólares, los países que seleccioné pertenecientes a este grupo son: Colombia, China y Sudáfrica. Y, el último grupo estarán los países con ingresos medios-bajos. Estos son los países con un PIB per cápita de entre 1.086 a 4.255 dólares, el país perteneciente a este grupo es: India. ~\cite{wb}
+\section{Análisis y Resultados}
+Haciendo uso del método de mínimos cuadrados ordinarios para calcular la curva de Kuznets de cada país. El resultado de dicha operación se presenta en la siguiente tabla:
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{| c | c | }
+\hline
+\multicolumn{2}{ |c| }{Líneas de regresión de cada país} \\ \hline
+País & Línea   \\ \hline
+Alemania & $78109.7 + -4041.4y  + 169.48y^2$  \\ \hline
+Australia & $-38522.2 + 3593.78y  + 6893.48y^2$  \\ \hline
+Colombia  & $-1272.92 + 1430.63y  + 1338.17y^2$ \\ \hline
+China & $-656.7 + 559.415y  + 1735.63y^2$   \\ \hline
+Sudáfrica & $3373.94 + 215.094y  + 1668.82y^2$   \\ \hline
+India & $-159.024 + 733.069y  + 1134.11y^2$   \\ \hline
+\end{tabular}
+\label{tab:líneas de regresión}
+\end{center}
+\end{table}
+
+También con la fórmula mencionada anteriormente (hacer referencia a tau) se puede cálcular el turning point de cada uno de estos países:
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{| c | c |  }
+\hline
+\multicolumn{2}{ |c| }{Turning point de cada país} \\ \hline
+País & Turning Point   \\ \hline
+Alemania & $150692$  \\ \hline
+Australia & $0.770539$  \\ \hline
+Colombia  & $0.585934$ \\ \hline
+China & $0.851159$   \\ \hline
+Sudáfrica &$0.937588$   \\ \hline
+India & $0.723836$   \\ \hline
+\end{tabular}
+\label{tab:Turning points}
+\end{center}
+\end{table}
+
+Se puede notar como en los países donde el signo de de ambos coeficientes ($\beta_1$ y $\beta_2$) es positivo no existe un turning point ( este no tiene sentido dentro de los datos), en otras palabras, estos países aún siguen en la primera fase de EKC. 
+
+En las gráficas a continuación se muestra la curva de cada uno de estos países separados según en sus ingresos. 
+
+\subsection{Países con ingresos altos}
+ Mientras que Alemania se encuentra en la última fase del EKC Australia aún sigue en la primera, lo cual concuerda ya que Australia es uno de los países con mayores emisiones de $CO_2$ per cápita en el mundo ( aprox 15.58 toneladas en el  2020), mientras que en Alemania en el mismo periodo de tiempo consumía (7.67 toneladas 2020).~\cite{owid}. 
+ 
+ Esto contradice los planteado en EKC, y es posible llegar a pensar que relacionar el crecimiento económico de un país con su calidad medioambiental no depende de tan pocos factores con el avance tecnológico. 
+ 
+ \begin{figure}[!htb]
+ \centering
+  \subfloat[Ger]{
+   \label{f:Alemania}
+    \includegraphics[width=0.3\textwidth]{gráficos/Gráfica_alemania.jpg}}
+  \subfloat[Aus]{
+   \label{f:Australia}
+    \includegraphics[width=0.3\textwidth]{gráficos/Gráfica_australia.jpg}}
+ \caption{Gráficas correspondientes a los países del grupo de ingresos altos. Elaboración propia}
+ \end{figure}
+\subsection{Países con ingresos medios-altos}
+En este grupo de países podemos evidenciar como todos están en la misma fase del EKC, la fase 1, la diferencia entre estos gráficos reside en la forma que tienen sus curvas.  La curva de Colombia es más parecida a la de una parábola, esto puede deberse a que su crecimiento en las emisiones de $CO_2$ tiene un cambio no tan brusco como si sucede con China, país el cuál cuenta con una gráfica algo parecida al del Logaritmo Natural, esto debido a que la industrialización de China fue  rápida y masiva lo que provocó que las emisiones de $CO_2$ de este país creciera de manera exponencial.
+\begin{figure}[!htb]
+ \centering
+  \subfloat[Colombia]{
+   \label{f:Colombia}
+    \includegraphics[width=0.3\textwidth]{gráficos/Gráfica_colombia.jpg}}
+  \subfloat[China]{
+   \label{f:China}
+    \includegraphics[width=0.3\textwidth]{gráficos/Gráfica_china.jpg}}
+  \subfloat[Sudáfrica]{
+   \label{f:Sudáfrica}
+    \includegraphics[width=0.3\textwidth]{gráficos/Gráfica_sudáfrica.jpg}}
+    
+ \caption{Gráficas correspondientes a los países del grupo de ingresos medios-altos. Elaboración propia}
+ \end{figure}
+ 
+Para Sudáfrica, se puede notar que el crecimiento de emisiones de $CO_2$ en este país es constante, tanto así que la gráfica que lo representa es casi lineal.
+
+\subsection{Países con ingresos medios-bajos}
+
+\begin{figure}[!htb]
+ \centering
+  \subfloat[India]{
+   \label{f:India}
+    \includegraphics[width=0.3\textwidth]{gráficos/Gráfica_india.jpg}}
+ \caption{Gráficas correspondientes a los países del grupo de ingresos medios-bajos. Elaboración propia}
+    \end{figure}
+    
+    En India ocurre un caso similar al visto en el grupo pasado; llegando incluso a producir menos emisiones de $CO_2$ per cápita menores que Colombia, esto aunque Colombia use mas fuentes de energía renovables para consumo primario que India ( Teniendo Colombia 3MWh de energía consumida procedente de energías renovables per cápita comparado con el India que tiene menos de 1MWh) ~\cite{owid}
+    La causa de esto se encuentra probablemente en la diferencia de población entre ambos países.
+
+\section{Conclusión}
+
+Mientras que países como Alemania van en buen camino en cuanto a cuidado medioambiental y desarrollo económico se refiere, se puede notar que en los demás países aún no se ha llegado a ese nivel de conciencia colectiva donde cuidar el medio ambiente es también una parte fundamental del desarrollo de un país. Casos como el de Australia se pueden llegar a considerar preocupantes porque al ser un país con un buen desarrollo económico debería de mínimamente haber alcanzado su turning point, esto abre la posibilidad de pensar que la relación entre medio ambiente y desarrollo económico depende más factores que los presentados en este modelo. 
+
+Por su parte los países de ingresos medios-altos y medios-bajos comparten la característica de estar todos en la primera fase del EKC; la diferencia entre estas gráficas radica en la pendiente que estas muestran, en las gráficas de Colombia e India se puede observar un crecimiento que cambia constantemente con el tiempo; para China su crecimiento es similar al de Colombia e India pero llega un momento que crece de forma rápida mientras que para Sudáfrica su crecimiento sufre cambios muy pequeños, tanto que la curva parece una línea recta. 
+
+
+%here comes the bibliography
+\bibliographystyle{plain}
+\bibliography{Referencias}
+
+\end{document}
